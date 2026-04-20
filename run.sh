@@ -8,6 +8,7 @@ docker run -it --rm \
     -e XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
     -v /home/ros2/1/cont/src:/home/work \
+    --device /dev/dri:/dev/dri \
     -p 2222:22 \
     --name gazebo_test \
     ros2full:v1 \
