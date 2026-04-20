@@ -11,7 +11,7 @@
 
 Способ 1: Docker (рекомендуемый)
 
-bash
+
 git clone https://github.com/bazarbaevssabit/color-follower-ros2.git
 cd color-follower-ros2
 chmod +x run.sh
@@ -22,13 +22,12 @@ chmod +x run.sh
 
 Далее внутри контейнера:
 
-bash
+
 ros2 launch mobile launch.py
 
 
 Способ 2: без Docker (нативно)
 
-bash
 cd ~/color-follower-ros2/src/mobile
 colcon build
 source install/setup.bash
@@ -41,11 +40,11 @@ ros2 launch mobile launch.py
 	внутри данного файла необходимо изменить строку:
 	    -v /home/ros2/1/cont/src:/home/work \  и прописать вместо  /home/ros2/1/cont/src свой путь к скаченным файлам.
 - `Dockerfile` – сборка образа `ros2_full:v1`
-- `worlds/` – файлы миров Gazebo с цветными кубами (если есть)
+- `worlds/` – файлы миров Gazebo с цветными кубами 
 - `config/` – конфигурация для RVIZ2
 - `description/` – urdf-файл робота
 - `launch/` – лаунч файл для запуска проекта
-- `worlds/` – файлы миров Gazebo с цветными кубами (если есть)
+- `worlds/` – файлы миров Gazebo с цветными кубами 
 - `src/` – нода для запуска робота, и его работы, в ноде описано, каким образом робот делает детекцию цвета куба
 
 
