@@ -9,7 +9,7 @@ def generate_launch_description():
     mobile_pkg_dir = get_package_share_directory('mobile')
 
 
-    sdf_file = os.path.join(mobile_pkg_dir, 'world', 'building_robot.sdf')
+    sdf_file = os.path.join(mobile_pkg_dir, 'world', 'test_world.sdf')
     urdf_file = os.path.join(mobile_pkg_dir, 'description', 'robot.urdf')
     rviz_config_path = os.path.join(mobile_pkg_dir, 'config', 'view_robot.rviz')
 
