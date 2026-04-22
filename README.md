@@ -1,4 +1,4 @@
-###🎨 Color Follower (ROS2 + Gazebo)
+***🎨 Color Follower (ROS2 + Gazebo)***
 
 **Данный проект создан для помощи новичкам в разворачивании окружения для ROS2**
 
