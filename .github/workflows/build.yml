@@ -1,0 +1,40 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: osrf/ros:jazzy-desktop-full
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install system and ROS dependencies
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            python3-colcon-common-extensions \
+            python3-rosdep \
+            ros-jazzy-cv-bridge \
+            ros-jazzy-image-transport
+
+      - name: Create workspace and copy source
+        run: |
+          mkdir -p /home/ros_ws/src
+          # Копируем пакет mobile в рабочую область
+          cp -r $GITHUB_WORKSPACE/src/mobile /home/ros_ws/src/
+
+      - name: Build package
+        run: |
+          cd /home/ros_ws
+          . /opt/ros/jazzy/setup.bash
+          colcon build --packages-select mobile
