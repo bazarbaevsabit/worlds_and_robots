@@ -3,6 +3,8 @@
 #include <geometry_msgs/msg/twist.hpp>
 #include <cv_bridge/cv_bridge.hpp>
 #include <opencv2/opencv.hpp>
+#include "mobile/color_utils.hpp"
+
 
 class SimpleColorDetector : public rclcpp::Node
 {
@@ -36,35 +38,8 @@ private:
         cmd_pub_->publish(twist);
     }
 
-    /**
-     * Определение названия цвета по компонентам HSV.
-     * @param h – оттенок (0..180 в OpenCV)
-     * @param s – насыщенность (0..255)
-     * @param v – яркость (0..255) – не используется, оставлен для совместимости
-     * @return строка с названием цвета или "NO_COLOR"
-     *
-     * Пороги по оттенку подобраны эмпирически для семи цветов.
-     * Насыщенность ниже 80 означает, что цвет слишком блёклый (белый/серый) –
-     * такие пиксели игнорируются.
-     */
-    std::string getColor(float h, float s, float v)
-    {
-        (void)v;   // Явно указываем, что параметр v сейчас не нужен (убирает warning)
-
-        // Если цвет недостаточно насыщенный, считаем его не цветным
-        if (s < 80) return "NO_COLOR";
-
-        // Диапазоны Hue в OpenCV (0-180) для разных цветов
-        if ((h >= 0 && h < 10) || (h >= 170 && h <= 180)) return "RED";
-        if (h >= 10 && h < 25)  return "ORANGE";
-        if (h >= 25 && h < 35)  return "YELLOW";
-        if (h >= 35 && h < 85)  return "GREEN";
-        if (h >= 85 && h < 100) return "CYAN";
-        if (h >= 100 && h < 130) return "BLUE";
-        if (h >= 130 && h < 160) return "PURPLE";
-
-        return "NO_COLOR";
-    }
+    
+ 
 
     /**
      * Callback: вызывается при получении каждого нового кадра с камеры.
