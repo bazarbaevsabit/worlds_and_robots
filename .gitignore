@@ -1,3 +1,6 @@
 src/mobile/build
 src/mobile/install
 src/mobile/log
+build
+install
+log
