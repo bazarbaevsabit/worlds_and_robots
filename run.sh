@@ -8,15 +8,13 @@ docker run -it --rm \
     -e DISPLAY=$DISPLAY \
     -e XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-    -v /home/user/my_project/color-follower-ros2/src:/home/work \
+    -v /home/ros2/my_project/worlds_and_robots/src:/home/work \
     --device /dev/dri:/dev/dri \
     --name gazebo_test \
     ros2_full:v1 \
     /bin/bash -c "
             cd /home/work/mobile
             colcon build
-            source install/setup.bash
-            ros2 launch mobile launch.py
             exec /bin/bash
         "
 
