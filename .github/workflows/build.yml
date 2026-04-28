@@ -28,10 +28,16 @@ jobs:
             ros-jazzy-image-transport \
             ros-jazzy-ament-cmake-gtest
 
-      - name: Create workspace and copy source
+      - name: Create workspace and copy source description
         run: |
-          mkdir -p /home/ros_ws/src
-          cp -r $GITHUB_WORKSPACE/src/mobile /home/ros_ws/src/
+          mkdir -p /home/ros_ws/src/descripttion
+          cp -r $GITHUB_WORKSPACE/src/mobile_description /home/ros_ws/src/
+
+      - name: Create workspace and copy source world
+        run: |
+          mkdir -p /home/ros_ws/src/world
+          cp -r $GITHUB_WORKSPACE/src/mobile_world /home/ros_ws/src/
+
 
       - name: Build package
         run: |
@@ -39,3 +45,9 @@ jobs:
           . /opt/ros/jazzy/setup.bash
           colcon build --packages-select mobile
 
+      - name: Run tests
+        run: |
+          cd /home/ros_ws
+          . install/setup.bash
+          colcon test --packages-select mobile
+          colcon test-result --verbose
