@@ -103,6 +103,7 @@
             </geometry>
         </collision>
     </link>
+    <!-- lidar -->
     <link name="vehicle_blue/chassis/gpu_lidar">
             <visual>
                 <geometry>
